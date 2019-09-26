@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
+import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -33,6 +34,8 @@ import com.example.vieweffectnotes.R;
 public class PaintView extends View {
     private Paint paint;
     private Paint paint2;
+    private Paint paint3;
+    private Bitmap bitmap;
     private Path path = new Path();
     private Context mContext;
 
@@ -45,7 +48,9 @@ public class PaintView extends View {
     private void init(){
         paint = new Paint();
         paint2 = new Paint();
+        paint3 = new Paint();
         paint2.setStyle(Paint.Style.STROKE);
+        paint3.setStyle(Paint.Style.FILL);
         paint.setStyle(Paint.Style.FILL); //设置绘制模式：STROKE 线、FILL 填充、FILL_AND_STROKE、同时使用
         paint.setColor(Color.parseColor("#ffffffff")); //设置颜色
         paint.setStrokeWidth(2); //设置线条宽度
@@ -56,6 +61,8 @@ public class PaintView extends View {
         paint.setStrokeMiter(29);//拐角大于多少会保留尖角，否则变成平角
         paint.setDither(true);//抖动
         paint.setFilterBitmap(true);//是否使用双线性过滤来绘制 Bitmap(减少马赛克)
+
+        //paint.reset() 重置  paint.set(Paint src) 复制
 
         /*线性渐变
         参数：
@@ -84,12 +91,12 @@ public class PaintView extends View {
 
 
         //Bitmap渐变可以用来绘制圆形的图片
-        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon1);
+        bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon1);
         bitmap = Bitmap.createScaledBitmap(bitmap,200,200,false);
         Shader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
         Bitmap bitmap1 = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon2);
-        bitmap = Bitmap.createScaledBitmap(bitmap1,200,200,false);
+        bitmap1 = Bitmap.createScaledBitmap(bitmap1,200,200,false);
         Shader bitmapShader1 = new BitmapShader(bitmap1, Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
         // ComposeShader：结合两个 Shader
         //mode: 混合模式很多
@@ -128,6 +135,15 @@ public class PaintView extends View {
         paint2.setPathEffect(pathEffect);
 
 
+        //在之后的绘制内容下面加一层阴影。方法的参数里， radius 是阴影的模糊范围； dx dy 是阴影的偏移量； shadowColor 是阴影的颜色。
+        //如果要清除阴影层，使用 clearShadowLayer() 。
+        paint2.setShadowLayer(10, 0, 0, Color.GREEN);
+        paint2.setTextSize(50);
+
+        //设置模糊效果
+        paint3.setMaskFilter(new BlurMaskFilter(50, BlurMaskFilter.Blur.NORMAL));
+        //设置浮雕
+        //paint.setMaskFilter(new EmbossMaskFilter(new float[]{0, 1, 1}, 0.2f, 8, 10));
 
 
 
@@ -146,6 +162,8 @@ public class PaintView extends View {
         path.arcTo(100, 100, 300, 300, -90, 90, false); // 强制移动到弧形起点（无痕迹）false有痕迹
         path.close();//封闭子图形
         canvas.drawPath(path,paint2);
+        canvas.drawText("萝卜不好吃", 300, 300, paint2);
+        canvas.drawBitmap(bitmap, 100, 300, paint3);
     }
 
 }
