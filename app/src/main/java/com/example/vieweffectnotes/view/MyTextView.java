@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapShader;
+import android.graphics.Camera;
 import android.graphics.Canvas;
 
 import android.graphics.Matrix;
@@ -29,6 +30,7 @@ public class MyTextView extends View {
     private Path path;
     private Context mContext;
     private Matrix matrix = new Matrix();
+    private Camera camera = new Camera();
 
     int left = 800;
     int top = 200;
@@ -114,6 +116,18 @@ public class MyTextView extends View {
         canvas.save();
         canvas.concat(matrix);
         canvas.drawBitmap(bitmap, 800, 200, paint);
+        canvas.restore();
+
+        //使用 Camera 来做三维变换
+        //Camera.setLocation(x, y, z) 设置虚拟相机的位置。x 和 y 参数一般不会改变，直接填 0 就好。
+        canvas.save();
+        camera.save(); // 保存 Camera 的状态
+        camera.rotateX(50); // 旋转 Camera 的三维空间
+        canvas.translate(950, 400); //
+        camera.applyToCanvas(canvas); // 把旋转投影到 Canvas
+        canvas.translate(-950, -400); //
+        camera.restore(); // 恢复 Camera 的状态
+        canvas.drawBitmap(bitmap, 900, 350, paint);
         canvas.restore();
     }
 
