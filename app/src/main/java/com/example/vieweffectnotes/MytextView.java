@@ -1,6 +1,7 @@
 package com.example.vieweffectnotes;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.CornerPathEffect;
@@ -21,6 +22,7 @@ import com.example.vieweffectnotes.view.MyTextView;
 public class MytextView extends TextView {
     private Paint paint = new Paint();
     PathEffect pathEffect;
+    private int color;
     public MytextView(Context context){
         super(context);
         init();
@@ -29,6 +31,11 @@ public class MytextView extends TextView {
     public MytextView(Context context, AttributeSet attrs)
     {
         super(context, attrs);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyTextView);
+        //将attrs.xml 文件中的 imageview属性 与 类中的属性str关联
+        color = typedArray.getInt(R.styleable.MyTextView_color,Color.GREEN);
+        //回收typeArray
+        typedArray.recycle();
         init();
     }
 
@@ -47,7 +54,7 @@ public class MytextView extends TextView {
         paint = getPaint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setPathEffect(pathEffect);
-        paint.setShadowLayer(10, 0, 0, Color.GREEN);
+        paint.setShadowLayer(10, 0, 0, color);
         super.onDraw(canvas);
     }
 

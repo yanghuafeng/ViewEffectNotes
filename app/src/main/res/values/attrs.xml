@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyTextView">
+        <attr name="color" format="integer">
+            <enum name="red" value="0xFFFF0000" />
+            <enum name="blue" value="0xFF0000FF" />
+            <enum name="white" value="0xFFFFFFFF" />
+            <enum name="green" value="0xFF00FF00" />
+        </attr>
+    </declare-styleable>
+</resources>
