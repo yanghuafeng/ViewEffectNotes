@@ -129,6 +129,8 @@ public class MyTextView extends View {
         camera.restore(); // 恢复 Camera 的状态
         canvas.drawBitmap(bitmap, 900, 350, paint);
         canvas.restore();
+
+       // postInvalidateDelayed(100);
     }
 
 }

@@ -9,6 +9,8 @@
         android:layout_height="match_parent">
 
     </RelativeLayout>
-
-
+    <com.example.vieweffectnotes.MytextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="萝卜不好吃"/>
 </RelativeLayout>
