@@ -159,7 +159,7 @@ public class PaintView extends View {
         //path.addXxx() ——添加子图形addCircle(float x, float y, float radius, Direction dir) 添加圆x, y, radius 这三个参数是圆的基本信息，最后一个参数 dir 是画圆的路径的方向。
         //path.lineTo(float x, float y) / rLineTo(float x, float y) 画直线  r相对坐标
         //path.moveTo(float x, float y) / rMoveTo(float x, float y) 移动到目标位置
-        path.arcTo(100, 100, 300, 300, -90, 90, false); // 强制移动到弧形起点（无痕迹）false有痕迹
+        path.arcTo(100, 100, 300, 300, -90, 90, true); // 强制移动到弧形起点（无痕迹）false有痕迹
         path.close();//封闭子图形
         canvas.drawPath(path,paint2);
         canvas.drawText("萝卜不好吃", 300, 300, paint2);

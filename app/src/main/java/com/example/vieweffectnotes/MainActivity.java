@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.example.vieweffectnotes.view.MyTextView;
 import com.example.vieweffectnotes.view.NormalView;
 import com.example.vieweffectnotes.view.PaintView;
 
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         params.setMargins(500,0,0,0);
-        PaintView naintView = new PaintView(this);
-        layout.addView(naintView,params);
+        PaintView paintView = new PaintView(this);
+        layout.addView(paintView,params);
+        MyTextView myTextView = new MyTextView(this);
+        layout.addView(myTextView,params);
     }
 }
