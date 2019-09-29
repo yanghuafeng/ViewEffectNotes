@@ -33,7 +33,7 @@ public class MytextView extends TextView {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.MyTextView);
         //将attrs.xml 文件中的 imageview属性 与 类中的属性str关联
-        color = typedArray.getInt(R.styleable.MyTextView_color,Color.GREEN);
+        color = typedArray.getInt(R.styleable.MyTextView_colorx,Color.GREEN);
         //回收typeArray
         typedArray.recycle();
         init();

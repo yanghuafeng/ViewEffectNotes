@@ -116,10 +116,10 @@ public class MainActivity extends AppCompatActivity {
 
         AnimationViewPlus viewPlus = new AnimationViewPlus(this);
         layout.addView(viewPlus);
-//        ObjectAnimator objectAnimator = ObjectAnimator.ofArgb(viewPlus, "color", 0xffff0000, 0xff00ff00);
-//        objectAnimator.setDuration(5000);
-//        objectAnimator.setRepeatCount(-1);
-//        objectAnimator.start();
+        ObjectAnimator objectAnimator = ObjectAnimator.ofArgb(viewPlus, "color", 0xffff0000, 0xff00ff00);
+        objectAnimator.setDuration(5000);
+        objectAnimator.setRepeatCount(-1);
+        objectAnimator.start();
 
         viewPlus.animate().scaleX(0.5f).scaleY(0.5f).alpha(0.5f).setDuration(5000);//同时动画
         //同时动画

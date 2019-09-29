@@ -13,6 +13,7 @@
     <com.example.vieweffectnotes.MytextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:color = "blue"
+        app:colorx = "white"
+        android:textSize="24sp"
         android:text="萝卜不好吃"/>
 </RelativeLayout>
